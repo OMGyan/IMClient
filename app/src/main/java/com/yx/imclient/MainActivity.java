@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.yx.imclient.entity.ChatInfo;
 import com.yx.imclient.im.MyWebSocketClient;
@@ -192,8 +193,14 @@ public class MainActivity extends AppCompatActivity implements IChatMessageCallb
      * 启动服务（websocket客户端服务）
      */
     private void startJWebSClientService() {
-        Intent intent = new Intent(mContext, MyWebSocketClientService.class);
-        startService(intent);
+        Intent innerIntent = new Intent(mContext, MyWebSocketClientService.class);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            startService(innerIntent);
+        }else {
+            startForegroundService(innerIntent);
+        }
+
+
     }
 
     /**
@@ -211,8 +218,18 @@ public class MainActivity extends AppCompatActivity implements IChatMessageCallb
             chatInfoList.add(chatInfo);
             adapter.notifyDataSetChanged();
             chatmsgRecyclerview.scrollToPosition(chatInfoList.size()-1);
-            Log.i("MyW",Thread.currentThread().getName());
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        chatmsgRecyclerview.scrollToPosition(chatInfoList.size()-1);
+    }
+
+    @Override
+    public void onNotifyInfo(String str) {
+        runOnUiThread(()->Toast.makeText(mContext,str,Toast.LENGTH_SHORT).show());
     }
 
     @OnTextChanged(value = R.id.et_content)
