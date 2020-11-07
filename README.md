@@ -4,4 +4,4 @@
 
 效果如下:
 
-![image](https://github.com/OMGyan/flutter_trip/blob/master/screen/1590373674417.gif)
+![image](https://github.com/OMGyan/IMClient/blob/main/app/screenshot/Screenshot_2020-11-07-09-27-53-895_com.yx.imclien.jpg)
