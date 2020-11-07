@@ -4,4 +4,4 @@
 
 效果如下:
 
-<img width="400" height="800" src="https://github.com/OMGyan/IMClient/blob/main/app/screenshot/Screenshot_2020-11-07-09-27-53-895_com.yx.imclien.jpg"/>
+<img width="300" height="600" src="https://github.com/OMGyan/IMClient/blob/main/app/screenshot/Screenshot_2020-11-07-09-27-53-895_com.yx.imclien.jpg"/>
